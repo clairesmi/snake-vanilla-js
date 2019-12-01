@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  margin: 0;
+  padding: 50px;
+  /* background-color: rgb(56, 56, 55); */
+  background: url('https://img5.goodfon.com/wallpaper/nbig/8/f3/zmeia-zhalo-chiornyi-fon-tiomnyi-fon.jpg');
+  background-size: cover;
+  /* background-color: white; */
+  color: white;
+  /* color: black; */
+
+  font-family: 'Londrina Outline', cursive;
+  letter-spacing: 3px;
+  font-size: 30px;
+}
+
+h1 {
+  flex-direction: row;
+  font-family: 'Londrina Outline', cursive;
+  letter-spacing: 3px;
+  font-size: 70px;
+  padding: 0px 50px 0px 0px
+}
+
+.grid {
+  width: 100%;
+  align-items: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+  max-height: 600px;
+  max-width: 600px;
+  border-radius: 10px;
+  background-color: rgba(177,190,57, 0.5)
+  /* background-color: black; */
+}
+
+.grid div {
+  /* border: 1px solid; */
+  flex-grow: 1;
+  height: 5%;
+  width: 5%;
+}
+
+.snake {
+  background-color: black;
+  opacity: 0.5;
+  border: solid  rgb(177,190,57, 0.7) 1px;
+  /* border: solid white 1px; */
+  background-size: 300px;
+  background-position-x: 0;
+  background-position-y: 0;
+  border-radius: 10px;
+}
+
+.head {
+  border: solid  rgb(177,190,57, 0.7) 1px;
+  /* border: solid white 1px; */
+  opacity: 0.8;
+  background-size: 300px;
+  background-position-x: 0;
+  background-position-y: 0;
+  /* transform: rotate(45deg); */
+  
+}
+
+
+.food {
+  /* border: solid  rgb(177,190,57, 0.7) 6px; */
+  border: solid black 4px;
+  border-radius: 10px;
+  background-size: 30px;
+  background-position-x: 0;
+  background-position-y: 0;
+  /* background-color: white; */
+  opacity: 0.7;
+  transform: rotate(45deg) scale(0.7, 0.7);
+}
+
+button {
+  font-family: 'Londrina Outline', cursive;
+  letter-spacing: 3px;
+  font-size: 30px;
+  border-radius: 10px;
+  background-color: rgb(177,190,57, 0.7);
+  margin: 100px 20px 0px 110px;
+}
+
+button:hover {
+  font-family: 'Londrina Outline', cursive;
+  letter-spacing: 3px;
+  font-weight: 900;
+  border-radius: 10px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.right {
+  text-align: left;
+  padding-right: 200px
+}
+
+.score {
+  margin: 20px 0px 0px 100px;
+  font-size: 50px;
+}
+
+.game-over {
+  margin: 40px 0px 0px 80px;
+  font-size: 60px;
+}
+
+
+.hide {
+  display: none;
+}
