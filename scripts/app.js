@@ -54,18 +54,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // *** Snake moves ***
   function snakeMove() {
     timer = setTimeout(snakeMove, speed)
-    switch (direction) {
-      case 'right': moveRight()
-        break
-      case 'up': moveUp()
-        break
-      case 'left': moveLeft()
-        break
-      case 'down': moveDown()  
+    if (direction === 'right') {
+      moveRight()
+    }
+    if (direction === 'left') {
+      moveLeft()
+    }
+    if (direction === 'up') {
+      moveUp()
+    }
+    if (direction === 'down') {
+      moveDown()
     }
     snakeEats() // call snake eats so the game can run this function whilst the snake is moving around
     // the grid
-    snakeDies()
+    snakeDies() // as above - checking to see if the snakeDies conditions are true 
   }
 
   // *** Automatic snake movement *** 
@@ -144,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       snakeArr.unshift(snakeArr[0])
       feed()
       speed -= 10
-      points ++
+      points += 1
       console.log(points)
       score.innerHTML = (`score: ${points}`)
     }    
