@@ -1,15 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Lose conditions
+  // Lose variables
+  // dom vaiables
 
   const reset = document.querySelector('.reset')
   const gameOver = document.querySelector('.game-over')
   const title = document.querySelector('.title')
 
   //  *** global variables ***
+
+  // game variables
   let speed = 300
-  let timer = null
-  let direction
+  let timerId = null
+  let direction = null
   let points = 0
 
   // *** build the grid ***
@@ -26,97 +29,81 @@ document.addEventListener('DOMContentLoaded', () => {
 
   gameOver.classList.add('hide')
 
-  // *** build the snake ***
-  const snakeArr = [22, 21]
+  // *** build the snake and add it randomly to the grid ***
+  const x = Math.floor(Math.random() * cells.length)
+  console.log(x)
+  const snakeArr = [x, x - 1]
+  console.log(snakeArr)
 
-  // *** add the snake to the grid ***
+  // *** add classes to snake array ***
   function addSnake() {
     snakeArr.map(index => cells[index].classList.add('snake'))
     cells[snakeArr[0]].classList.add('head')
-
-    const body = snakeArr.filter(index => !cells[index].classList.contains('head'))
-    body.map(index => cells[index].classList.add('body'))
   }
-  addSnake()
+  addSnake() // call add snake function
 
   // *** remove the snake from the grid
   function removeSnake () {
     snakeArr.map(index => cells[index].classList.remove('snake'))
     cells[snakeArr[0]].classList.remove('head')
-
-    const body = snakeArr.filter(index => !cells[index].classList.contains('head'))
-    body.map(index => cells[index].classList.remove('body'))
   }
 
-  console.log(cells)
-
+  // console.log(cells)
 
   // *** Snake moves ***
+
   function snakeMove() {
-    timer = setTimeout(snakeMove, speed)
+
     if (direction === 'right') {
-      moveRight()
+      removeSnake()
+      snakeArr.pop()
+      if (snakeArr[0] % width === 19) {
+        snakeArr[0] -= 19
+      }
+      snakeArr.unshift(snakeArr[0] + 1)
+      addSnake()
     }
+
     if (direction === 'left') {
-      moveLeft()
+      removeSnake()
+      snakeArr.pop()
+      if (snakeArr[0] % width === 0) {
+        snakeArr[0] += 19
+      }
+      snakeArr.unshift(snakeArr[0] - 1)
+      addSnake()
     }
+
     if (direction === 'up') {
-      moveUp()
+      removeSnake()
+      snakeArr.pop()
+      if (snakeArr[0] <= 19) {
+        snakeArr[0] += 380
+      }
+      snakeArr.unshift(snakeArr[0] - width)
+      addSnake()
     }
+
     if (direction === 'down') {
-      moveDown()
+      removeSnake()
+      snakeArr.pop()
+      if (snakeArr[0] >= 380) {
+        snakeArr[0] -= 380
+      }
+      snakeArr.unshift(snakeArr[0] + width)
+      addSnake()
     }
+
     snakeEats() // call snake eats so the game can run this function whilst the snake is moving around
     // the grid
     snakeDies() // as above - checking to see if the snakeDies conditions are true 
+    timerId = setTimeout(snakeMove, speed)
   }
-
-  // *** Automatic snake movement *** 
-  function moveRight() {
-    removeSnake()
-    snakeArr.pop()
-    if (snakeArr[0] % width === 19) {
-      snakeArr[0] -= 19
-    }
-    snakeArr.unshift(snakeArr[0] + 1)
-    addSnake()
-  }
-
-  function moveUp() {
-    removeSnake()
-    snakeArr.pop()
-    if (snakeArr[0] <= 19) {
-      snakeArr[0] += 380
-    }
-    snakeArr.unshift(snakeArr[0] - width)
-    addSnake()
-  }
-
-  function moveLeft() {
-    removeSnake()
-    snakeArr.pop()
-    if (snakeArr[0] % width === 0) {
-      snakeArr[0] += 19
-    }
-    snakeArr.unshift(snakeArr[0] - 1)
-    addSnake()
-  }
-
-  function moveDown() {
-    removeSnake()
-    snakeArr.pop()
-    if (snakeArr[0] >= 380) {
-      snakeArr[0] -= 380
-    }
-    snakeArr.unshift(snakeArr[0] + width)
-    addSnake()
-  }
-
 
   // *** User directs the snake ***
   document.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
-      case 37: if (direction !== 'right') direction = 'left'
+      case 37: if (direction !== 'right') direction = 'left' //moveLeft()
         break
       case 38: if (direction !== 'down') direction = 'up'
         break
@@ -130,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
   snakeMove() 
 
   // *** randomly add food ***
-  function feed () {
+  function feed() {
     const foodIdx = Math.floor(Math.random() * cells.length)
     if (!cells[foodIdx].classList.contains('snake')) {
       cells[foodIdx].classList.add('food')
@@ -175,5 +162,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   resetGame()
   
-
 })
