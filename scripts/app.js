@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   addSnake() // call add snake function
 
+
+
   // *** remove the snake from the grid
   function removeSnake () {
     snakeArr.map(index => cells[index].classList.remove('snake'))
@@ -97,8 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
     snakeEats() // call snake eats so the game can run this function whilst the snake is moving around
     // the grid
     snakeDies() // as above - checking to see if the snakeDies conditions are true 
-    timerId = setTimeout(snakeMove, speed)
+    // timerId = setTimeout(snakeMove, speed)
   }
+
+  timerId = setInterval(snakeMove, speed)
 
   // *** User directs the snake ***
   document.addEventListener('keydown', (e) => {
