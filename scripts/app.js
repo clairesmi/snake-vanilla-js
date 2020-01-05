@@ -13,10 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const data = JSON.parse(localStorage.getItem('scores'))
   let top3 = []
 
-  console.log(scoreArray)
-  console.log(data)
-  console.log(top3)
-
   //  *** global variables ***
 
   // game variables
@@ -149,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
       feed()
       speed -= 10
       points += 1
-      console.log(points)
       score.innerHTML = (`score: ${points}`)
     }    
   }
@@ -178,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   resetGame()
 
   // functions for creating and storing high scores
-  
+
   function hiScoreCreate(points) {
     const hiScore = document.createElement('div')
     hiScore.classList.add('hi-score')
@@ -189,43 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function storeScores() {
     scoreArray.push(points)
     localStorage.setItem('scores', JSON.stringify(scoreArray))
-    console.log(scoreArray)
     hiScoreCreate()
   }
 
   data ? top3 = data.sort((a, b) => b - a).slice(0, 3) : null
   top3.map(score => hiScoreCreate(score))
-  console.log(top3)
 
 
 
 })
-
-
-// tim's code
-// snakeArray.map(index => squares[index].classList.add('snake'))
-// function move(e) {
-//   if (e.keyCode === 39 && playerIndex % width < width - 1) {
-//     clear()
-//   }
-//   snakeRight = setInterval(moveRight, 200)
-//   console.log('move right')
-
-//   if (e.keyCode === 37 && playerIndex % width > 0) {
-//     clear()
-//   }
-//   snakeLeft = setInterval(moveLeft, 200)
-//   console.log('move left')
-
-//   if (e.keyCode === 40 && playerIndex + width < width * width) {
-//     clear()
-//   }
-//   snakeDown = setInterval(moveDown, 200)
-//   console.log('move down')
-//   if (e.keyCode === 38 && playerIndex - width >= 0) {
-//     clear()
-//   }
-//   snakeUp = setInterval(moveUp, 200)
-//   console.log('move up')
-
-// }
