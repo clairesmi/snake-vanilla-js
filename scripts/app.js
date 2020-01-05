@@ -7,10 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameOver = document.querySelector('.game-over')
   const title = document.querySelector('.title')
 
+  // variables for hi-score 
+  const hiScores = document.querySelector('.hi-scores')
+  const scoreArray = localStorage.getItem('scores') ? JSON.parse(localStorage.getItem('scores')) : []
+  const data = JSON.parse(localStorage.getItem('scores'))
+  let top3 = []
+
+  console.log(scoreArray)
+  console.log(data)
+  console.log(top3)
+
   //  *** global variables ***
 
   // game variables
-  let speed = 300
+  let speed = 200
   let timerId = null
   let direction = null
   let points = 0
@@ -31,9 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // *** build the snake and add it randomly to the grid ***
   const x = Math.floor(Math.random() * cells.length)
-  console.log(x)
+  // console.log(x)
   const snakeArr = [x, x - 1]
-  console.log(snakeArr)
+  // console.log(snakeArr)
 
   // *** add classes to snake array ***
   function addSnake() {
@@ -147,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function snakeDies() {
     if (snakeArr.slice(2).includes(snakeArr[0])) {
-      console.log('game over')
+      storeScores()
       snakeGameOver()
     }
   }
@@ -156,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     grid.classList.replace('grid', 'hide', 'reset')
     gameOver.classList.remove('hide')
     title.classList.add('hide')
+    hiScores.classList.add('hide')
     resetGame()
   }
 
@@ -165,5 +176,56 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
   resetGame()
+
+  // functions for creating and storing high scores
   
+  function hiScoreCreate(points) {
+    const hiScore = document.createElement('div')
+    hiScore.classList.add('hi-score')
+    hiScore.innerHTML = points
+    hiScores.appendChild(hiScore)
+  }
+
+  function storeScores() {
+    scoreArray.push(points)
+    localStorage.setItem('scores', JSON.stringify(scoreArray))
+    console.log(scoreArray)
+    hiScoreCreate()
+  }
+
+  data ? top3 = data.sort((a, b) => b - a).slice(0, 3) : null
+  top3.map(score => hiScoreCreate(score))
+  console.log(top3)
+
+
+
 })
+
+
+// tim's code
+// snakeArray.map(index => squares[index].classList.add('snake'))
+// function move(e) {
+//   if (e.keyCode === 39 && playerIndex % width < width - 1) {
+//     clear()
+//   }
+//   snakeRight = setInterval(moveRight, 200)
+//   console.log('move right')
+
+//   if (e.keyCode === 37 && playerIndex % width > 0) {
+//     clear()
+//   }
+//   snakeLeft = setInterval(moveLeft, 200)
+//   console.log('move left')
+
+//   if (e.keyCode === 40 && playerIndex + width < width * width) {
+//     clear()
+//   }
+//   snakeDown = setInterval(moveDown, 200)
+//   console.log('move down')
+//   if (e.keyCode === 38 && playerIndex - width >= 0) {
+//     clear()
+//   }
+//   snakeUp = setInterval(moveUp, 200)
+//   console.log('move up')
+
+// }

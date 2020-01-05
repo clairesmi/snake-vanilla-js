@@ -107,7 +107,17 @@ button:hover {
   padding-right: 200px
 }
 
+.hi-scores {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 80px;
+  margin-bottom: 30px;
+}
+
 .score {
+  padding-top: 80px;
   margin: 20px 0px 0px 100px;
   font-size: 50px;
 }
