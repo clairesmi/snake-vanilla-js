@@ -10,11 +10,10 @@ body {
   height: 100vh;
   width: 100vw;
   justify-content: center;
-  margin: 0;
-  padding: 50px;
   background: url('https://img5.goodfon.com/wallpaper/nbig/8/f3/zmeia-zhalo-chiornyi-fon-tiomnyi-fon.jpg');
   background-size: cover;
   color: white;
+  margin: 0px;
 
   font-family: 'Londrina Outline', cursive;
   letter-spacing: 3px;
@@ -103,17 +102,30 @@ button:hover {
 }
 
 .right {
-  text-align: left;
-  padding-right: 200px
+  /* text-align: left; */
+  /* padding-right: 200px */
 }
 
 .hi-scores {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: center;
   padding-left: 80px;
   margin-bottom: 30px;
+  margin-right: 10px
+}
+
+.hi-title {
+  display: flex;
+  flex-basis: 100%;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.each-score {
+ margin-left: 20px;
 }
 
 .score {

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // variables for hi-score 
   const hiScores = document.querySelector('.hi-scores')
+  const eachScore = document.querySelector('.each-score')
   const scoreArray = localStorage.getItem('scores') ? JSON.parse(localStorage.getItem('scores')) : []
   const data = JSON.parse(localStorage.getItem('scores'))
   let top3 = []
@@ -63,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function snakeMove() {
 
     if (direction === 'right') {
+      // moveRight() equivalent
       removeSnake()
       snakeArr.pop()
       if (snakeArr[0] % width === 19) {
@@ -110,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   timerId = setInterval(snakeMove, speed)
 
-  // *** User directs the snake ***
+  // *** User directs the snake, direction is assigned ***
   document.addEventListener('keydown', (e) => {
     switch (e.keyCode) {
       case 37: if (direction !== 'right') direction = 'left' //moveLeft()
@@ -178,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hiScore = document.createElement('div')
     hiScore.classList.add('hi-score')
     hiScore.innerHTML = points
-    hiScores.appendChild(hiScore)
+    eachScore.appendChild(hiScore)
   }
 
   function storeScores() {
