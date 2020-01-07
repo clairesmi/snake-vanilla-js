@@ -101,11 +101,6 @@ button:hover {
   opacity: 0.5;
 }
 
-.right {
-  /* text-align: left; */
-  /* padding-right: 200px */
-}
-
 .hi-scores {
   display: flex;
   /* flex-direction: column; */

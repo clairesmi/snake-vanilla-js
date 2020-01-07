@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // game variables
   let speed = 200
-  const timerId = null
+  let timerId = null
   let direction = null
   let points = 0
 
