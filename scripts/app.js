@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // game variables
   let speed = 200
-  let timerId = null
+  const timerId = null
   let direction = null
   let points = 0
 
@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function snakeMove() {
 
     if (direction === 'right') {
+      console.log(direction)
       // moveRight() equivalent
       removeSnake()
       snakeArr.pop()
@@ -86,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (direction === 'up') {
       removeSnake()
-      snakeArr.pop()
       if (snakeArr[0] <= 19) {
         snakeArr[0] += 380
       }
+      snakeArr.pop()
       snakeArr.unshift(snakeArr[0] - width)
       addSnake()
     }
@@ -107,10 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
     snakeEats() // call snake eats so the game can run this function whilst the snake is moving around
     // the grid
     snakeDies() // as above - checking to see if the snakeDies conditions are true 
-    // timerId = setTimeout(snakeMove, speed)
+    timerId = setTimeout(snakeMove, speed)
   }
-
-  timerId = setInterval(snakeMove, speed)
 
   // *** User directs the snake, direction is assigned ***
   document.addEventListener('keydown', (e) => {
@@ -138,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
   }
+  feed()
 
   // *** snake eats food ***
   function snakeEats() {
@@ -146,11 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
       snakeArr.unshift(snakeArr[0])
       feed()
       speed -= 10
+      console.log(speed)
       points += 1
       score.innerHTML = (`score: ${points}`)
     }    
   }
-  feed()
+  
 
   function snakeDies() {
     if (snakeArr.slice(2).includes(snakeArr[0])) {
