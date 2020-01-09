@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Lose variables
-  // dom vaiables
+  // dom variables
 
   const reset = document.querySelector('.reset')
   const gameOver = document.querySelector('.game-over')
@@ -10,9 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // variables for hi-score 
   const hiScores = document.querySelector('.hi-scores')
   const eachScore = document.querySelector('.each-score')
-  const scoreArray = localStorage.getItem('scores') ? JSON.parse(localStorage.getItem('scores')) : []
-  const data = JSON.parse(localStorage.getItem('scores'))
-  let top3 = []
+  let storedHiScore = localStorage.getItem('storedHiScore') ? JSON.parse(localStorage.getItem('storedHiScore')) : null
+  const data = JSON.parse(localStorage.getItem('storedHiScore'))
+  const displayedScore = null
+  // const top3 = []
 
   //  *** global variables ***
 
@@ -48,8 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     cells[snakeArr[0]].classList.add('head')
   }
   addSnake() // call add snake function
-
-
 
   // *** remove the snake from the grid
   function removeSnake () {
@@ -185,14 +182,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function storeScores() {
-    scoreArray.push(points)
-    localStorage.setItem('scores', JSON.stringify(scoreArray))
-    hiScoreCreate()
+    // scoreArray.push(points)
+    if (points > storedHiScore) {
+      // array version = storedHiScore.push(points)
+      storedHiScore = points
+      localStorage.setItem('storedHiScore', JSON.stringify(storedHiScore))
+      hiScoreCreate()
+    }
   }
 
-  data ? top3 = data.sort((a, b) => b - a).slice(0, 3) : null
-  top3.map(score => hiScoreCreate(score))
+  console.log(storedHiScore)
+  console.log(points)
+
+  data ? hiScoreCreate(data) : null
 
 
+  // array version 
+
+  // data ? top3 = data.sort((a, b) => b - a).slice(0, 3) : null
+  // top3.map(score => hiScoreCreate(score))
 
 })

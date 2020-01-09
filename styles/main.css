@@ -138,3 +138,7 @@ button:hover {
 .hide {
   display: none;
 }
+
+.new {
+  background: green;
+}
